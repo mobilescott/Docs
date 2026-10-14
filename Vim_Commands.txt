@@ -1,0 +1,551 @@
+Vim_Commands * 20261007 * Nvim * Pair Down for Vim *** 
+gvim * Installes as well * Works * On list to Checkout *****************
+LUA * Don’t Bother with Vim * Versions/Compiled/Mess *************
+vim.pack * USE this if Extras needed ********
+
+Collection of * vim.opt * vim.api * vim.keymap * RELAVENT for VIM??????????
+PLUGINS * Solve/Address Most Issues * Vim 9.2 * USE vim.pack * Only * To Simplify *******
+
+Most Commands SEEM to work Differently depending ON * Normal VS Insert Mode **********
+
+********************** Collect Vim Cheet Sheets ********************
+/pattern * to Search Forword *  ?  (?) *to Search Backwards * Find * 
+:%s/old/new/g(c) * replace (substitute) all occurences * c * Confirm each one * 
+File Management involves buffers, splits, and tabs. Save with :w, quit with :q, and save-and-quit with :wq or ZZ. Open files in new buffers with :e file, split windows horizontally with :sp or vertically with :vs, and switch between tabs using gt (next) or gT (previous).
+Clipboard and Paste mode can be managed with Ctrl+Shift+V (Linux/Windows) * 
+To paste from the system clipboard, you may need to enter paste mode using :set paste before using standard paste commands like p or P
+
+
+******* Commands for regular * VISUAL MODE **********
+shift+v y to yank line * p to paste * f . * find first . *then modify * w move to next word * cw remove
+*** shift+v (V) * initiate linewise visual mode * selects lines rather than characters * 
+j, k, or arrow keys to extend selection * d to delete * y to yank & paste * J to join in single line * 
+: to apply ex?? commands (search/replace) specifically to selected range * ?????????????
+*** cw * ci “” * remove what’s in “”  & enter insert mode * then esc * save file * 
+f . * find “something” * Look into ???
+x * remove char * dd * remove line * 
+
+********* :E ** Default for Explorer ****** HOW TO EXIT EXPLORE? * Open File/Buffer * 
+
+***** How to get to Command Line while in Explore * : * Then Execute commands * !<cmd> *
+: * !dir * Commands after  “ “e * :Ex *
+ While in File Manager MODE ***********
+% (Shift 5) * To Create File
+d * Create directory
+so “file” * source (run) file * 
+:e “file” * insert to file * (:wq)
+***** Execute Shell Commands Directly ********
+Esc * then : *** !(followed by command *** Esc :!mkdir zzz *************
+:!<?> * pass to shell * : ! <cmd> **************** ????????????????????????????
+
+*********** EXPLORER NAVIGATION  *************************************************
+:Ex * Open Explorer * :Vexplore * for Vertical * :Sexplore for Horizontal * Le * open new **********
+HOW TO CHANGE WINDOW? TOGGLE? CLOSE?
+Use mouse to change windows get * 
+E21: Cannot make changes, ‘modifiable’ is off * Directory Problem?
+set hidden * _vimrc * Mouse works to change Window *********************************
+:q * To Quit a Window * 
+Ctrl-6 * Changes buffer in window *  Works * 
+
+Click on Directory OR File TO Enter or Open * Press Enter if necessary *********************
+Open New Window * :Lexplore * toggles the file explorer window ***********
+GO UP * PRESS – (Dash) to move to parent directory *************
+History * PRESS u * go back to previous directory in the History *************
+Hidden Files * PRESS gh * to toggle visibility of hidden files *** .files (dotfiles) ************
+Reload * PRESS R * to refresh directory listing *****************
+For faster navigation, many users combine :Explore with plugins like Telescope or NvimTree, or use fuzzy finders like fzf to jump directly to files or directories. To switch between open files (buffers) rather than navigating the filesystem, use :ls to list buffers and :b<number> to switch to a specific one.
+
+****************** Marco Pelusa *********************
+
+(1) *********** 7 Vim Tips & Tricks Everyone Should Know **** and Motions? *********
+https://www.youtube.com/watch?v=txzzCyTI7Qk ***************
+
+00:00 - Intro
+00:11 - 1. Exiting Vim *
+ :wq * Now ZZ * save and close window *
+:q! * ZQ * Quit w/o saving * 
+01:27 - 2. Relative Line Numbers
+set relativenumber number * 
+12k or 12<Up> (arrow) * 12j or 12<Down> * Jump 12 Lines * 
+
+03:01 - 3. Using Text Objects * :help text-objects * for more information ***************
+dw * delete word (or until end of word if inside word) * u * undo * 
+diw * Delete “inner word” * word surrounding cursor * u * undo * 
+daw * Delete “a word * gets rid of space at end * 
+cw * delete word and replace * 
+ciw * “change inner word” * 
+viw * Select “inner word” * Visually Mark * 
+
+dis * Delete inner sentence * u * undo * 
+vis * Select inner sentence * visually mark * 
+vas * Select a sentence * 
+
+
+05:18 - 4. Running External Shell Commands *** That Funny Thing ***  :’<,’>!  ***** ???????????
+:!<cmd> * 
+Select (text) * command from current buffer (JSON or something) * try
+{ “hello” : “I am Fantastic”}
+:! * Displays the *  :’<,’>!    **** jq ** (JSON command * May need different example)???????
+(jq * pretty printed the sloppy text in hello and replaced in file ** LOOK INTO ***********
+:’<,’>! <command> * pass selection to command and replace selection with the commands output
+
+06:20 - 5. Read External File Content and put right after cursor * 
+:read file1 * Read the file and paste to current cursor position * 
+
+
+06:50 - 6. Scrolling The Editing Window *While cursor stays in place * Add # for multiple lines * 
+Ctrl-Y * Scroll window up w/o moving cursor * 5^Y * 
+Ctrl-E * Scroll window down w/o moving cursor * 5^E * 
+zb * Scroll selected line to the bottom of window * 
+zt * Top * 
+zz * Middle * 
+
+08:28 - 7. Changing The Visual Selection
+Make (some text) selection * 
+o * jump to other end of visual selection * move cursor to select more text * 
+O * in Visual Block mode * jump to the other end of VS on same line * 
+**********7 Tricks **************************
+
+************ :NORM COMMAND *********************
+cli-tools.md * vim * jq * tmux * sed * grep * awk * Examples
+
+**** Vim :norm - Apply Commands to Every Line Fast *******************
+https://www.youtube.com/watch?v=yXmakhASZfI 
+00:00 Intro * Edit multiple lines fast * 
+00:29 Visual Block Mode * C-V * select text * Enter command * Applied to each Line * 
+I text Esc * A text Esc * 
+If you use <Esc>, click the left mouse button or use any command that jumps to another buffer
+while in Visual mode, the highlighting stops and no text is affected.
+
+old mode		“v”		“Ctrl-V”		“V”
+Normal		Visual		blockwise Visual	linewise Visual
+Visual			Normal	blockwise Visual	linewise Visual
+blockwise Visual	Visual		Normal		linewise Visual
+linewise Visual		Visual		blockwise Visual	Normal
+
+
+Suppose you wanted to add a - to each line in the file * 
+Could use Visual Block Mode * Ctrl-V * blockwise visual * Lower Left Status * 
+[count]C-v * Start Visual mode blockwise * say a first line *
+Go to end of where you want to change ***** o * go to end * O other direction or Visual????????????
+‘I’ * Capital I * - ‘ ‘ (space) * <Esc> * ALL lines get a (- )Prefix Inserted * 
+I- <Esc> * 
+To append to the end of each line * Go to end of line * 
+C-V * Enter VBM * go to end of last line * 
+A * (Capitol A) * Insert new text * Esc * Puts text after each first word not eol * ALL MESSED UP * 
+
+***** Now the Power of NORM * the :norm command *********************************************
+ 01:00 The norm Command * :{range]norm A text * append text to x,y lines * 
+:1,7norm A text * Works * [u]ndo * Method 2 * 1:40min
+C-V * Visual Mark (at start) * Go to End * HOW TO MOVE? j, arrow, mouse, ? ***ENTER COMMAND MODE ***
+??? Go to end of paragraph? Somewhere below * 
+:’<,’norm A text * ‘<,’ * automatically appears entering command after Visual block select * 
+Append text to end of all selected lines * 
+********* NORM help info * :help norm ??? ********************************************
+:norm[al][!] commands * Execute Normal mode commands {commands} *
+Makes it possible to execute Normal mode commands typed on the command line.
+{commands} are executed like they are typed. Execution stops when an error is encountered.
+For ‘undo’ all commands are undone together * 
+If the [!] isgiven, mappings will not be used.
+Without it, when this command is called form a non-mappable mapping 
+(:noremap), the argument can be mapped anyway * 
+{commands} should be a complete command * 
+If {commands} does not finish a command, the last one will be aborted as if <Esc> or <C-C> was  typed *
+This implies that an insert command must be completed
+(to start Insert mode, see :startinsert) * A “:” 
+
+
+01:49 Advanced Use of norm
+
+
+POWER OF ANY COMMAND OVER ANY RANGE * 
+
+****** Advanced Use of norm ***************** 1:51
+Add * to begin and end of first word of buffer * % * select entire buffer * 0 * select beginning of line * 
+:%norm 0wi*(<C-v><Esc> * to type Esc inside command mode)e(jump to end of word)a*
+:%norm 0wi*<C-v><Esc>*ea* (hit enter)
+***********************End of Vim :norm video **********************************
+
+**************** :G COMMAND ************************* :g :global E148
+https://www.youtube.com/watch?v=PDYpP22wAow 
+************** Mastering The :g Command - Vim Tips & Tricks *******************
+For all Executable commands * :h ex-commands * that can be used with :g ******************
+:[range]g/{pattern}/{cmd} * Execute the Ex command (default “:p” for print)
+on the lines within [range] where {pattern} matches * 
+*********** :g in Action ********* :h ex-commands ************
+:g/original/p * find all lines containing “original” and print * 
+:g/original/d * find and delete line * undo * now
+**** Introducing :v * OPPOSITE * Run commands on lines Not containing search **********
+:v/timeless/d * delete all lines not containing timeless * undo
+****** Combining :g with :norm *************************
+add something to each line containing “replacement” *
+:g/replacement/norm A(go to eol)uses Rust btw(add “text”) * 
+************ End :g Command ************************
+
+************* GN Motion Will Change How You Edit in Vim *****No Plugins *****************
+https://www.youtube.com/watch?v=0SLU9lSuRd0
+Select Next Occurrence * with Vim Motion and combine with operators * cw , etc.
+Use / to search then * Normally use ‘n’ (‘N’ motions) * repeat the latest “/” or “?” * 
+Select search method instead of just jumping to it * gn motion * is used * 
+TYPE gn IN NORMAL MODE * AS WELL AS OTHER COMMANDS * 
+
+00:00 Intro * gn * v_gn * Text Replacement * 
+00:25 What is `gn`?
+gn * Search forward for the last used search pattern, like with n, and start Visual mode to select the match.
+If the cursor is on the match, visually selects it. If an operating is pending, operates on the match.
+E.g., “dgn” deletes the text of the next match.
+If Visual mode is active, extends the selection until the end of the next match. 
+
+Note: Unlike n the search direction does not depend on the previous search command. ‘wrapscan’ applies. 
+
+“hlsearch’ (‘hls’ * ‘nohls’) * Highlight all matches * default *
+‘incsearch’ (‘is’ * ‘nois’) * Hightlight first match * default on * 
+/fzf * search fzf * ‘gn’ * selects the next match * Highlighted (Selected) *
+‘c’ * delete selected text and start insert * text * Esc * 
+‘cgn’ * jump to next match * select it visually * apply the ‘c’ command * add text * Esc * 
+‘.’ * repeat last change * goes to next fzf (‘/’) * same as above * repeat till done * 
+
+02:25 `gN` to go backwards * same as gn only backwards * 
+Start Over * 
+‘:e!’ * discard any changes to the current buffer * since last write * 
+/ * search * cgN * BACKWARDS * 
+‘cgN’ * jump to previous match * select it visually * apply the change  * NOTE ‘.’ DOES NOT WORK * 
+‘.’ just repeats last “command” * the previous text insert * 
+
+03:52 Save Time with `*`
+
+Change different text * back to top * put Cursor On text to change * 
+‘*’ * Selects the next search  match * using the word under the cursor * 
+‘N’ * repeat latest “/” or “?” in opposite direction * 
+Back to top * 
+cgn * start new changes * ‘.’ to repeat
+************* End gn Motion **********************
+
+************ Commands for * INSERT MODE **************
+https://www.youtube.com/watch?v=aWndvfN616g 
+*********** 4 Insert Mode Tricks in 3 Minutes - Vim Tips & Tricks **************
+00:00 Intro
+00:09 1. i_CTRL-O * Insert Mode * Send 1 Command * 
+C-o zz * center current line * Cursor * 
+C-o p * paste from default Register * 
+00:53 2. i_CTRL-N / i_CTRL-P * Word Completion * Provides List to Choose *
+C-n * Complete Word * Like TAB * 
+C-n * Select Next Word * 
+C-p * Select Previous Word * 
+C-y * Confirm Selected Word * (OR type space)?
+01:30 3. i_CTRL+T / i_CTRL+Do * Indent Lines from Insert Mode * MULTIPLE LINES???????????
+C-t * indent line 1 level * 
+C-d * unindent line 1 level * 
+01:54 4. i_CTRL+R * Pasting from Specific Register * 0 * Default Register * 
+Register 0 keeps the Last yank in it * 
+[“x]d{motion} * Delete text that {motion} moves over [into register x] * Check for Exceptions!!!!
+[“x]dd * Delete [count] lines [into Register x] linewise * 
+C-o p * paste from default register * 
+C-o u * Undo * 
+************* Registers ***** Default x (“”) unnamed register *** yy goes here ********
+Numbered registers “0 to “9 * quote (“) number * “7 * register 7 *
+Vim fills these registers with text from yank and delete commands * 
+Numbered register x (“”) (default reg) contains the text from the most recent yank command,
+unless the command specified another register with [“x] * 
+
+C-r 0 * paste from register 0 * 
+C-r {register} * C-r 7 * paste from register 7 * 
+********* End 4 Insert Mode Tricks *********************************
+
+*********7  Normal Mode Tricks *********************
+https://www.youtube.com/watch?v=stycgH89QHw 
+00:08 1. Many Ways To Insert
+I * insert text before cursor *
+a * Insert text after cursor * 
+I * insert text at beginning of line *
+A * Insert text at end of line (append) * 
+
+00:33 2. Quickly Open and Enter New Lines
+O * insert text at new line above cursor (open above) * 
+o * insert text at new line below cursor (open below) * 
+
+01:16 3. Re-enter Last Insert Point
+gi * insert text where text where insert mode was stopped * 
+
+01:46 4. Visual Selection Recall
+<C-v>p * (vap???) Select paragraph * indent entire paragraph * 
+Hit > or something * whatever indent command is * TAB? * 
+gv * start visual mode with last area and mode * reselect last selection * 
+02:54 5. Undo and Redo * Also can use Vim History * Look Into * 
+u * undo last changes * 
+Ctrl-R * redo changes which were undone * 
+03:15 6. Repeat Last Change * 
+C-vA! * go back and append ! to EOL * Go Back to Normal Mode * HOW?? >Esc> ?????????????????????????
+Go to another line * 
+. * repeat last change * append ! at EOL * 
+
+
+03:59 7. More Context around Current Line w/o Losing your Place
+zb * scroll current line to bottom of the screen * 
+zz * scroll current line to middle of the screen * 
+zt * scroll current line to top of the screen * 
+********** End of Normal mode Tricks ***************************
+
+************* 5 Command Mode Tricks *** : ** ! * enter OS command **********
+Paste Items into Command line * ALL Linux Examples * 
+https://www.youtube.com/watch?v=evfwjz2oykY 
+:!wc -w * Get a word count for current file * from OS * Linux example 
+00:15 1. Insert Current Filename  
+<Ctrl-R>% * paste current file name to command line * 
+:!wc -w <C-R% (current filename appears) * Enter get word count * 
+01:08 2. Insert Current Line
+<Ctrl-R><Ctrl-L> * paste current line to command line * 
+:.!cowsay  * NEED A GOOD EXAMPLE * 
+01:47 3. Tab Completion * Open file
+:e startname<tab> * start tab completion * May give List * 
+<C-N> * select next match * <C-P> * select previous match * Enter * to select * 
+:h :command * for information * 
+02:23 4. Delete Word or Line containing “original” * 
+:g/origginal * made typo * 
+<C-W> * delete word before cursor * 
+:g/original/d * 
+:%b/oldtext/newtext/g * buffer substitute globally * make mistake
+<C-U> * delete everything before cursor * Throw awwy line * 
+03:27 5. Repeat Last Command
+‘@:’ * repeat last command * 
+******** End Command mode Tricks ************************
+
+********** Vim Horizontal Motions: From Basics to Lightning Speed *************
+https://www.youtube.com/watch?v=Vnh2WpUjVfQ * 
+
+00:17 Basics * * h & l * L & R Arrow * 5l * 6h * etc * 
+01:20 Navigating by Words * A word (small) consists of a sequence of letters, digits, and underscores,
+or sequence of other non-blank characters, separated with white space
+spaces * tabs * <EOL> * An empty line is also considered a to be a word.
+This can be changed with the ‘iskeyword’ option * 
+WORD * consists of a sequence of non-blank characters, separated with white space.
+An empty line is also considered to be a WORD * 
+w * move cursor [count] words forward * Hits “ considered a word * 
+W * move cursor [count] WORDs forward * Hits “ disregards * 
+b  * move cursor [count] words backwards * Same
+B * move cursor [count] WORDs backwards * Thing
+e * move cursor to the end of [count] words forward * 
+ge * move cursor to the end of [count] words backwards * 
+gE * move cursor to the end of [count] WORDs backwards * 
+
+02:47 Use Line Boundaries
+0 * Jump to the very beginning of the line * 
+^ * Jump to the first non-whitespace character * 
+$ * Jump to end of the line * 
+03:20 Jump to Characters
+f{char} * find the next instance of that {char} * 
+; * Repeat last ‘f’ , ‘F’ , ‘t’ or ‘T’ * 
+, * Repeat in the opposite direction * 
+F{char} * find previous instance of that {char} * 
+t{char} (till/until) * move in front of that {char} * 
+T{char} * move in front of that {char} backwards * 
+*********** End of Horizontal Motions ************************
+
+***************** BUFFER NAVIGATION ****************************************
+************ Buffer Tricks * https://www.youtube.com/watch?v=fDXrA2ut6Yc * files & cheatsheets * 
+Open Files are Buffers * by default vim opens 1 buffer/file * 
+Window is a viewport onto a buffer * multi windows on 1 buffer * several windows on different buffers * 
+Each Buffer is in one of three states * Active & Hidden loaded into memory * 
+Active * Buffer is Displayed * If there is a file for this buffer has been read in * If Modified different from file 
+Hidden * Not Displayed * If there is a file for this buffer has been read in * Same as Active just not seen
+Inactive * Not Displayed and contains nothing * Options for buffer are remembered if file was once loaded
+                Can contain marks from the “shade” file * But contains No text
+vim file1 * 
+:ls * List all buffers * 
+:e (dit)(open) file2 * :e file3 * 
+:ls * Lists 3 buffers (files) * 1 h * 2 #h * 3 %a * can switch between % & # * 
+% * marks the current buffer * a * shows buffer is active * 
+# *  marks the alternate buffer * 
+h * shows buffer is hidden * 
+*********** Switching Buffers ************
+:bn(N) (ext) * go to next buffer in buffer list * Now 1 h * 2 %a * 3 #h * went backwards (up list) *
+:bp [revius] * go to previous buffer * 
+:bf [irst] * go to first buffer in list * 
+:bl [ast] * go to last buffer in list * 
+Ctrl-^ (C-6) * switch to alternate buffer * 
+:b {index} * go to buffer with {index} * 
+:b {name} * go to buffer with {name} * just enough to be unique * 
+bd [elete] {index}/{name} * close buffer * :bd 1 * delete buffer 1 *
+:e [dit]/[open] newfile * Now get new buffer 4 * Buffer indices unique across sessions * 
+********** The One that always gets me ************
+pick buffer or use active * I * insert text * Esc * Normal * 
+:bn * Try to switch buffer * get Error 37: No write since change (add ! to override) * 
+Doesn’t buffer change if buffer has been modified * 
+:w * write buffer to file * then :bn * 
+C-6 (C-^) * switch back * make change * 
+ :bn! * force to go to next buffer in buffer list *
+
+***** hidden * when default on *********** Normally off *******
+Commands that move thru the buffer list sometimes hide a buffer although the ‘hidden’ option is off
+when these three things are true:
+- The buffer is Modified * 
+- ‘autowrite’ is off or wring is not possible * 
+- the ! flag was used * 
+To hide a specific buffer use the ‘bufhidden’ option * 
+‘hidden’ is set for one command with * :hide {command} :hide * 
+
+
+:set hidden * Turn ‘hidden’ ON * This option let’s you switch between buffers * ??????????????????
+******* On by default in nvim ***********
+
+*************** How to Navigate Buffers ??????????
+To switch between open files (buffers) rather than navigating the filesystem use * 
+:ls to list buffers and 
+:b<number> to switch to a specific one.
+*********** To Exit File w/o closing app * Must delete the current buffer ***********
+Method 1: Delete the Current Buffer *** PRESS ESC to ensure you’re in Normal Mode *********
+:bd (:bdelete) * Enter * remove file from buffer * 
+:bd! * Enter * Force-Close * If Changed ******
+Method 2 : Switch to New Empty Buffer * keep current (for undo history) but clear screen ***********
+ESC * :enew & Enter * Open New Empty File ***********
+Note on Multiple Buffers
+If you have multiple files open, :q will only close the current window/buffer. If it is the last window, :q will exit Neovim entirely.  Using :bd ensures you remain in the editor even if it was the only file open, as the buffer is simply removed from memory.
+************ End of buffer Navigation ****************************************
+
+
+
+
+
+
+
+
+
+************ Command Line FZF *****************************
+
+
+
+
+
+********** How to Navigate Registers * Stop losing text in Vim ********************
+Registers Explained * https://www.youtube.com/watch?v=bBU7gVNqVFw * Marco Peluso * 
+Clipboard Manager on Steroids * There are ten types of registers * {register} E354 ?????
+* 1) The unnamed register “”
+* 2) 10 numbered registers “0 to “9
+* 3) The small delete register “-  
+* 4) 26 named registers “a to ”z OR “A to “Z
+* 5) Three read only registers * “: * “. * “% *
+ * 6) Alternate buffer register “#
+* 7) The expression register “=
+* 8) The selection registers “* and “+
+* 9) The black hole register “_
+* 10) Last search pattern register “/   ************************************
+:reg[isters] * list all numbered and named registers * 
+************* Registers in Action **** delete/yank/put *******
+yy * :reg * registers “” and “0 * contain the yanked text ***** reg “0 always keeps last yank ***
+dw * :reg * only register “” (default) contains deleted word * reg “” keeps other deletions (word, text, etc) *
+“{register} * Use {register} for next delete/yank/put * “7 * Shows in bottom right corner *********
+p * paste(put) reg “7 ********
+*********** Appending to Registers ******************** 2:50min
+Use an uppercase character to append with delete/yank * 
+“a * yy * Yank line into register a * :reg * take a look *
+“A * yy * Yank line and append to register a * :reg * look again * 
+*********** Special Registers *************
+“% * path to readme.md file * 
+“/ * last search pattern * 
+“: * last command used in command mode * 
+“. * contains last insert made * 
+“- contains contents of last small deletion * 
+“* and “+ * connect to your system support? * Used for Copying Text between Vim and other applications * 
+
+********** Registers and Macros **********************
+q(Q){0-9 a-z A-Z| * Record macro into Register {0-9 a-z A-Z} * it’s a q (Q) * 
+“b (lower left * recording @b) * 
+dw W(skip word)(is space needed?) guW * move to beginning of line * q again (stop recording) * 
+:reg * “b is * dwWguWj0 * 
+@b * Run macro in register “b * execute content in register {0-9a-z”.=*+} * 
+@@ * Repeat last macro * 
+********** End of Registers ************************
+
+******* Windows * Never be lost in Vim Windows again **************************
+https://www.youtube.com/watch?v=78lQk-_z0QY 
+00:00 Intro * How Windows interact with Buffers * 
+Buffers are Files open in Command mode * 
+00:15 What are Windows?
+Summary * A buffer is the in-memory text of a file.
+A window is a viewport on a buffer.
+A tab page is a collection of windows.
+A window is a viewport onto a buffer. You can use multiple windows on one buffer,
+or several windows on different buffers.
+00:47 How to Create Windows * Commands to use in Command mode * 
+Default Keybindings * MULTIPLE * ALL start with Ctrl-W * 
+
+:sp[lit] * split current window horizontally * :q[uit] * close current window * 
+Ctrl-W s (S?) * split current window horizontally * 
+Ctrl-W Ctrl-S * split current window horizontally * 
+Ctrl-W Ctrl-Q * close current window * 
+Ctrl-W q * close current window * 
+
+:vsp[lit] * split current window vertically * 
+Ctrl-W v * split current window vertically * 
+Ctrl-W Ctrl-V * split current window vertically * 
+split current window and edit {file} in this window * Tab Complete Works * 
+:sp {file} * hori
+:vsp {file} * verti
+
+02:25 Switching Between Windows
+Ctrl-W h/j/k/l or Arrow Keys * move focus to window in given direction * 
+Ctrl-W Ctrl-W * focus next window clock-wise * 
+Ctrl-W p * focus on previous window * 
+
+03:06 Resizing Windows
+Ctrl-W - * decrease current window height * 5Ctrl-W + * 5 line decrease * 
+Ctrl-W + * increase current window height * 
+Ctrl-W < * decrease current window width * 5Ctrl-W < * 5 line decrease * 
+Ctrl-W > * increase current window width * 
+
+Ctrl-W = * make all windows equally high and wide * 
+
+04:11 More Useful Commands
+Keep Only Active Window * 
+Ctrl-W o * close all other windows * OR
+:on[ly] * close all other windows * 
+
+:new * split window horizontally with new file * 
+Ctrl-W n * split window horizontally with new file *
+:vnew * split window vertically with new file * No default keybind * 
+
+************** End of Windows *********************************
+
+
+
+*********************** Your Terminal Can Be 10x Faster with fzf *****************
+https://www.youtube.com/watch?v=YwTalCgH2yc&list=PLAgc_JOvkdovpZmFvDAgOs8m_0UIgG6QK&index=3 
+************* Find and Open Files on the Command-line ***************************
+
+
+When changing between Modes * 
+
+Test buffers
+Test Paste
+
+********************** yy / p **** In VISUAL MODE ***** Works
+********* SETUP Clipboard Next *** IN _vimrc * WORKS *********
+" Enable Windows-style copy/paste
+source $VIMRUNTIME/mswin.vim
+behave mswin
+
+
+
+************ SHOULD NEVER NEED ***** MAYBE LINUX? ************************************
+************ Core Configuration ****** see NVIM_vim_pack.docx **********************
+Create an init.lua file with the following base settings to enable Python-specific behavior, mouse support, and system clipboard access:
+-- ~/.config/nvim/init.lua
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.clipboard = "unnamedplus" -- Requires win32yank on Windows * in Neovim\vin * see below * 
+vim.opt.mouse = "a"
+****** nvim best practices for copy/paste *** classic-copy-paste.nvim * Plugin ***********
+To integrate Neovim with your system clipboard, add vim.opt.clipboard = "unnamedplus" to your init.lua or set clipboard=unnamedplus to your init.vim. This ensures all yank and delete operations interact directly with the OS clipboard. 
+For precise control without overriding default behavior, use the + register explicitly with leader key mappings:
+vim.keymap.set({'n', 'v'}, '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
+vim.keymap.set({'n', 'v'}, '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
+If system clipboard integration fails, ensure you have installed the necessary clipboard tools for your environment, such as xclip or xsel for X11, or wl-clipboard for Wayland. You can verify your setup by running :checkhealth inside Neovim. 
+To avoid overwriting your system clipboard when replacing text in visual mode, map the paste command to delete without yanking:
+vim.keymap.set('x', 'p', '"_dP', { desc = 'Paste without overwriting clipboard' })
+For users who prefer standard OS shortcuts, the classic-copy-paste.nvim plugin maps Ctrl-C, Ctrl-V, and Ctrl-X to work seamlessly in terminal and GUI modes.
+
+
+
+****************** TEST AREA ****************
+this is a copy/paste test
